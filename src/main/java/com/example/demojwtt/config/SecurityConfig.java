@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -23,6 +24,7 @@ import java.nio.charset.StandardCharsets;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true) // Habilita @PreAuthorize, @PostAuthorize, etc.
 public class SecurityConfig {
 
     @Value("${jwt.secret}")
@@ -60,13 +62,17 @@ public class SecurityConfig {
             .csrf(AbstractHttpConfigurer::disable)
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/login", "/auth/validate").permitAll()
-                .requestMatchers("/h2-console/**").permitAll()
-                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                .requestMatchers(
+                    "/auth/login",
+                    "/auth/validate",
+                    "/h2-console/**",
+                    "/swagger-ui/**",
+                    "/v3/api-docs/**"
+                ).permitAll()
                 .anyRequest().authenticated()
             )
-            .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
-            .oauth2ResourceServer(oauth2 -> oauth2.jwt());
+            .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin())) // necessário para acessar o H2 console
+            .oauth2ResourceServer(oauth2 -> oauth2.jwt()); // utiliza o JwtDecoder definido como Bean
 
         return http.build();
     }
