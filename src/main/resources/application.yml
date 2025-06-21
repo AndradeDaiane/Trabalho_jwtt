@@ -1,7 +1,7 @@
 # application.yml
 # 🚀 Configurações do Servidor Web
 server:
-  port: 8080 # Porta padrão da API
+  port: 8081 # Porta padrão da API
 
 # 🗄️ Configurações do Banco de Dados H2
 spring:
@@ -13,7 +13,7 @@ spring:
   h2:
     console:
       enabled: true # Ativa o console do H2
-      path: /h2-console # http://localhost:8080/h2-console
+      path: /h2-console # http://localhost:8081/h2-console
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
