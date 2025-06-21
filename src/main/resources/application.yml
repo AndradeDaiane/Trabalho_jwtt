@@ -1,0 +1,43 @@
+# application.yml
+# 🚀 Configurações do Servidor Web
+server:
+  port: 8080 # Porta padrão da API
+
+# 🗄️ Configurações do Banco de Dados H2
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE # Banco H2 em memória
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true # Ativa o console do H2
+      path: /h2-console # http://localhost:8080/h2-console
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update # Cria/atualiza automaticamente o schema. ⚠️ Não usar em produção!
+    show-sql: true # Exibe as queries no terminal
+    properties:
+      hibernate:
+        format_sql: true # Formata SQL no console
+
+  devtools:
+    restart:
+      enabled: true # Reinicia a aplicação automaticamente ao salvar alterações
+    livereload:
+      enabled: true # Ativa LiveReload (requer extensão no navegador)
+
+# 🔐 Configurações do JWT
+jwt:
+  secret: umaChaveSecretaMuitoLongaEComplexaParaAssinarTokensJWT # Mínimo 32 caracteres para HMAC-SHA256
+  expiration: 3600000 # Expiração do token (em milissegundos) → 1h
+
+# 📚 Documentação da API com Swagger (Springdoc OpenAPI)
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    disable-swagger-default-url: true # Evita abrir a Petstore por padrão
+  api-docs:
+    path: /v3/api-docs
