@@ -30,13 +30,13 @@
 		<java.version>24</java.version>
 	</properties>
 	<dependencies>
-        <!-- Web -->
+        <!-- 🌐 Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Segurança -->
+        <!-- 🔐 Segurança -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -46,7 +46,14 @@
             <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
         </dependency>
 
-        <!-- JPA e banco de dados -->
+        <!-- 🧾 JWT (Auth0) -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+
+        <!-- 🗄️ JPA e banco de dados -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -57,21 +64,21 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Lombok -->
+        <!-- 🍬 Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
 
-        <!-- Swagger / OpenAPI -->
+        <!-- 📚 Swagger / OpenAPI -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.5.0</version>
         </dependency>
 
-        <!-- DevTools -->
+        <!-- 🛠️ DevTools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -79,7 +86,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Testes -->
+        <!-- ✅ Testes -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -94,7 +101,7 @@
 
     <build>
         <plugins>
-            <!-- Plugin para compilação com suporte ao Lombok -->
+            <!-- ✨ Lombok Annotation Processor -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -108,7 +115,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Plugin do Spring Boot -->
+            <!-- 🚀 Spring Boot Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
